@@ -1,0 +1,351 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block titulo %}{{ titulo }}{% endblock %}
+
+{% block contenido %}
+<!-- Seccion Hero -->
+<section class="hero">
+    <div class="contenedor hero__contenido">
+        <div class="hero__texto">
+            <span class="hero__etiqueta">Endless Runner 2D</span>
+            <h1 class="hero__titulo">
+                <span class="hero__titulo-destacado">JumpRush</span>
+                <br>Corre. Salta. Sobrevive.
+            </h1>
+            <p class="hero__descripcion">
+                {{ juego.descripcion }}
+            </p>
+            <div class="hero__botones">
+                <a href="#escenarios" class="boton boton--primario">Explorar Mundos</a>
+                <a href="#personajes" class="boton boton--secundario">Ver Personajes</a>
+            </div>
+        </div>
+        
+        <div class="hero__imagen">
+            <img src="{% static 'images/jump2.png' %}" alt="JumpRush Game" class="hero__game-img">
+        </div>
+    </div>
+</section>
+
+<!-- Seccion Juego -->
+<section class="juego" id="juego">
+    <div class="contenedor">
+        <div class="seccion__encabezado">
+            <span class="seccion__etiqueta">Sobre el Juego</span>
+            <h2 class="seccion__titulo">Que es JumpRush?</h2>
+            <p class="seccion__descripcion">
+                Un endless runner que combina accion rapida, graficos pixel art y mecanicas adictivas.
+            </p>
+        </div>
+        
+        <div class="caracteristicas">
+            <div class="caracteristica">
+                <div class="caracteristica__icono">
+                    <svg width="32" height="32" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                    </svg>
+                </div>
+                <h3 class="caracteristica__titulo">Accion Rapida</h3>
+                <p class="caracteristica__descripcion">Reflejos al maximo mientras esquivas obstaculos a toda velocidad.</p>
+            </div>
+            <div class="caracteristica">
+                <div class="caracteristica__icono">
+                    <svg width="32" height="32" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                    </svg>
+                </div>
+                <h3 class="caracteristica__titulo">Pixel Art</h3>
+                <p class="caracteristica__descripcion">Graficos retro con estilo moderno que te transportan a la era dorada.</p>
+            </div>
+            <div class="caracteristica">
+                <div class="caracteristica__icono">
+                    <svg width="32" height="32" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    </svg>
+                </div>
+                <h3 class="caracteristica__titulo">Colecciona</h3>
+                <p class="caracteristica__descripcion">Monedas, power-ups y desbloquea personajes unicos.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Seccion Escenarios -->
+<section class="escenarios" id="escenarios">
+    <div class="contenedor">
+        <div class="seccion__encabezado">
+            <span class="seccion__etiqueta">Mundos</span>
+            <h2 class="seccion__titulo">Escenarios</h2>
+            <p class="seccion__descripcion">
+                Explora 3 mundos unicos, cada uno con sus propios desafios y recompensas.
+                <br><strong>Haz clic en cada tarjeta para ver mas informacion.</strong>
+            </p>
+        </div>
+        
+        <div class="flip-cards-grid">
+            {% for escenario in escenarios %}
+            <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                <div class="flip-card__inner">
+                    <div class="flip-card__front">
+                        <img src="{% static escenario.imagen %}" alt="{{ escenario.nombre }}" class="flip-card__imagen">
+                        <div class="flip-card__overlay">
+                            <h3 class="flip-card__nombre">{{ escenario.nombre }}</h3>
+                            <span class="flip-card__hint">Toca para ver mas</span>
+                        </div>
+                    </div>
+                    <div class="flip-card__back">
+                        <h3 class="flip-card__back-titulo">{{ escenario.nombre }}</h3>
+                        <p class="flip-card__back-descripcion">{{ escenario.descripcion }}</p>
+                        <div class="flip-card__stats">
+                            <div class="flip-card__stat">
+                                <span class="flip-card__stat-label">Dificultad</span>
+                                <span class="flip-card__stat-value">{{ escenario.dificultad }}</span>
+                            </div>
+                            <div class="flip-card__stat">
+                                <span class="flip-card__stat-label">Bonus</span>
+                                <span class="flip-card__stat-value flip-card__stat-value--highlight">{{ escenario.monedas_bonus }}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- Seccion Personajes -->
+<section class="personajes" id="personajes">
+    <div class="contenedor">
+        <div class="seccion__encabezado">
+            <span class="seccion__etiqueta">Heroes</span>
+            <h2 class="seccion__titulo">Personajes</h2>
+            <p class="seccion__descripcion">
+                Elige tu corredor favorito. Cada uno tiene habilidades unicas.
+                <br><strong>Haz clic en cada tarjeta para ver sus estadisticas.</strong>
+            </p>
+        </div>
+        
+        <div class="flip-cards-grid">
+            {% for personaje in personajes %}
+            <div class="flip-card flip-card--personaje" onclick="this.classList.toggle('flipped')">
+                <div class="flip-card__inner">
+                    <div class="flip-card__front">
+                        <img src="{% static personaje.imagen %}" alt="{{ personaje.nombre }}" class="flip-card__imagen">
+                        <div class="flip-card__overlay">
+                            <h3 class="flip-card__nombre">{{ personaje.nombre }}</h3>
+                            <span class="flip-card__hint">Toca para ver stats</span>
+                        </div>
+                    </div>
+                    <div class="flip-card__back flip-card__back--personaje">
+                        <h3 class="flip-card__back-titulo">{{ personaje.nombre }}</h3>
+                        <p class="flip-card__back-descripcion">{{ personaje.descripcion }}</p>
+                        
+                        <div class="flip-card__stats-bars">
+                            <div class="stat-bar">
+                                <span class="stat-bar__label">Velocidad</span>
+                                <div class="stat-bar__track">
+                                    <div class="stat-bar__fill" style="width: {{ personaje.velocidad|add:0|divisibleby:1 }}0%;"></div>
+                                </div>
+                            </div>
+                            <div class="stat-bar">
+                                <span class="stat-bar__label">Salto</span>
+                                <div class="stat-bar__track">
+                                    <div class="stat-bar__fill stat-bar__fill--secondary" style="width: {{ personaje.salto }}0%;"></div>
+                                </div>
+                            </div>
+                            <div class="stat-bar">
+                                <span class="stat-bar__label">Resistencia</span>
+                                <div class="stat-bar__track">
+                                    <div class="stat-bar__fill stat-bar__fill--accent" style="width: {{ personaje.resistencia }}0%;"></div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="flip-card__habilidad">
+                            <span class="flip-card__habilidad-label">Habilidad Especial</span>
+                            <span class="flip-card__habilidad-nombre">{{ personaje.habilidad }}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- Seccion Armas -->
+<section class="armas" id="armas">
+    <div class="contenedor">
+        <div class="seccion__encabezado">
+            <span class="seccion__etiqueta">Arsenal</span>
+            <h2 class="seccion__titulo">Armas</h2>
+            <p class="seccion__descripcion">
+                Equipa armas poderosas para derrotar a tus enemigos.
+                <br><strong>Haz clic en cada tarjeta para ver sus estadisticas.</strong>
+            </p>
+        </div>
+        
+        <div class="flip-cards-grid">
+            {% for arma in armas %}
+            <div class="flip-card flip-card--arma" onclick="this.classList.toggle('flipped')">
+                <div class="flip-card__inner">
+                    <div class="flip-card__front">
+                        <img src="{% static arma.imagen %}" alt="{{ arma.nombre }}" class="flip-card__imagen">
+                        <div class="flip-card__overlay">
+                            <h3 class="flip-card__nombre">{{ arma.nombre }}</h3>
+                            <span class="flip-card__hint">Toca para ver stats</span>
+                        </div>
+                    </div>
+                    <div class="flip-card__back flip-card__back--arma">
+                        <h3 class="flip-card__back-titulo">{{ arma.nombre }}</h3>
+                        <p class="flip-card__back-descripcion">{{ arma.descripcion }}</p>
+                        
+                        <div class="flip-card__stats-bars">
+                            <div class="stat-bar">
+                                <span class="stat-bar__label">Dano</span>
+                                <div class="stat-bar__track">
+                                    <div class="stat-bar__fill stat-bar__fill--danger" style="width: {{ arma.dano }}0%;"></div>
+                                </div>
+                            </div>
+                            <div class="stat-bar">
+                                <span class="stat-bar__label">Alcance</span>
+                                <div class="stat-bar__track">
+                                    <div class="stat-bar__fill stat-bar__fill--secondary" style="width: {{ arma.alcance }}0%;"></div>
+                                </div>
+                            </div>
+                            <div class="stat-bar">
+                                <span class="stat-bar__label">Velocidad</span>
+                                <div class="stat-bar__track">
+                                    <div class="stat-bar__fill stat-bar__fill--accent" style="width: {{ arma.velocidad }}0%;"></div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="flip-card__habilidad">
+                            <span class="flip-card__habilidad-label">Habilidad Especial</span>
+                            <span class="flip-card__habilidad-nombre">{{ arma.habilidad }}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- Seccion Enemigos -->
+<section class="enemigos" id="enemigos">
+    <div class="contenedor">
+        <div class="seccion__encabezado">
+            <span class="seccion__etiqueta">Amenazas</span>
+            <h2 class="seccion__titulo">Enemigos</h2>
+            <p class="seccion__descripcion">
+                Conoce a los peligrosos enemigos que encontraras en tu camino.
+                <br><strong>Haz clic en cada tarjeta para ver sus caracteristicas.</strong>
+            </p>
+        </div>
+        
+        <div class="flip-cards-grid">
+            {% for enemigo in enemigos %}
+            <div class="flip-card flip-card--enemigo" onclick="this.classList.toggle('flipped')">
+                <div class="flip-card__inner">
+                    <div class="flip-card__front">
+                        <img src="{% static enemigo.imagen %}" alt="{{ enemigo.nombre }}" class="flip-card__imagen">
+                        <div class="flip-card__overlay">
+                            <h3 class="flip-card__nombre">{{ enemigo.nombre }}</h3>
+                            <span class="flip-card__tipo-badge flip-card__tipo-badge--{{ enemigo.tipo|lower }}">{{ enemigo.tipo }}</span>
+                            <span class="flip-card__hint">Toca para ver info</span>
+                        </div>
+                    </div>
+                    <div class="flip-card__back flip-card__back--enemigo">
+                        <h3 class="flip-card__back-titulo">{{ enemigo.nombre }}</h3>
+                        <span class="flip-card__tipo-badge flip-card__tipo-badge--{{ enemigo.tipo|lower }}">{{ enemigo.tipo }}</span>
+                        <p class="flip-card__back-descripcion">{{ enemigo.descripcion }}</p>
+                        
+                        <div class="flip-card__stats-bars">
+                            <div class="stat-bar">
+                                <span class="stat-bar__label">Vida</span>
+                                <div class="stat-bar__track">
+                                    <div class="stat-bar__fill stat-bar__fill--success" style="width: {{ enemigo.vida }}0%;"></div>
+                                </div>
+                            </div>
+                            <div class="stat-bar">
+                                <span class="stat-bar__label">Dano</span>
+                                <div class="stat-bar__track">
+                                    <div class="stat-bar__fill stat-bar__fill--danger" style="width: {{ enemigo.dano }}0%;"></div>
+                                </div>
+                            </div>
+                            <div class="stat-bar">
+                                <span class="stat-bar__label">Velocidad</span>
+                                <div class="stat-bar__track">
+                                    <div class="stat-bar__fill stat-bar__fill--accent" style="width: {{ enemigo.velocidad }}0%;"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- Seccion Nosotros -->
+<section class="nosotros" id="nosotros">
+    <div class="contenedor">
+        <div class="seccion__encabezado">
+            <span class="seccion__etiqueta">El Equipo</span>
+            <h2 class="seccion__titulo">Nosotros</h2>
+            <p class="seccion__descripcion">
+                Somos BAE Technology, un equipo apasionado por crear experiencias de juego memorables.
+            </p>
+        </div>
+        
+        <div class="equipo__grid">
+            {% for miembro in equipo %}
+            <div class="miembro">
+                <div class="miembro__avatar">
+                    <span>{{ miembro.nombre|slice:":1" }}</span>
+                </div>
+                <h3 class="miembro__nombre">{{ miembro.nombre }}</h3>
+                <p class="miembro__rol">{{ miembro.rol }}</p>
+                <p class="miembro__descripcion">{{ miembro.descripcion }}</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- Seccion Contacto -->
+<section class="contacto" id="contacto">
+    <div class="contenedor">
+        <div class="seccion__encabezado">
+            <span class="seccion__etiqueta">Contactanos</span>
+            <h2 class="seccion__titulo">Contacto</h2>
+            <p class="seccion__descripcion">
+                Tienes preguntas sobre JumpRush? Nos encantaria escucharte.
+            </p>
+        </div>
+        
+        <div class="contacto__contenido">
+            <div class="contacto__info">
+                <div class="contacto__item">
+                    <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                    </svg>
+                    <span>contacto@baetechnology.com</span>
+                </div>
+                <div class="contacto__item">
+                    <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                    </svg>
+                    <span>Mexico</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
