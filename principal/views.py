@@ -15,25 +15,25 @@ def inicio(request):
         'escenarios': [
             {
                 'id': 'bosque',
-                'nombre': 'Bosque Encantado',
+                'nombre': 'Sector Perdido',
                 'imagen': 'images/escenario1.jpeg',
-                'descripcion': 'Un frondoso bosque lleno de arboles gigantes, flores coloridas y criaturas magicas. Corre entre la naturaleza mientras esquivas raices y saltas sobre troncos caidos.',
+                'descripcion': 'Una antigua zona industrial donde todo comenzó a fallar. Las máquinas quedaron fuera de control y los drones patrullan sin descanso, atacando a cualquiera que entre. Entre estructuras abandonadas y sistemas inestables, este lugar guarda las primeras pistas de lo que salió mal.',
                 'dificultad': 'Facil',
                 'monedas_bonus': '+10%',
             },
             {
                 'id': 'desierto',
-                'nombre': 'Desierto Ancestral',
+                'nombre': 'Ciudad Silenciosa',
                 'imagen': 'images/escenario2.jpeg',
-                'descripcion': 'Arenas doradas bajo un sol abrasador. Piramides antiguas guardan secretos mientras esquivas cactus y tormentas de arena en este desafiante escenario.',
+                'descripcion': 'Lo que antes fue una ciudad activa ahora permanece en completo silencio. No hay señales de vida… solo drones vigilando cada rincón y reaccionando ante cualquier movimiento. Las calles ocultan secretos, y cada paso te acerca a una verdad que alguien —o algo— intenta mantener oculta.',
                 'dificultad': 'Media',
                 'monedas_bonus': '+25%',
             },
             {
                 'id': 'ciudad',
-                'nombre': 'Ciudad Neon',
+                'nombre': 'El Núcleo',
                 'imagen': 'images/escenario3.jpeg',
-                'descripcion': 'Una metropolis futurista iluminada con luces de neon. Salta entre edificios, esquiva vehiculos voladores y recorre las calles de esta ciudad cyberpunk.',
+                'descripcion': 'En lo más profundo del sistema se encuentra el origen de todo. Aquí, las máquinas operan con un propósito desconocido, protegiendo el corazón que las controla. Cada enfrentamiento es más intenso, y solo avanzando podrás descubrir qué está realmente detrás de esta amenaza.',
                 'dificultad': 'Dificil',
                 'monedas_bonus': '+50%',
             },
@@ -42,7 +42,7 @@ def inicio(request):
             {
                 'id': 'aventurero',
                 'nombre': 'Max el Aventurero',
-                'imagen': 'images/player1.gif',
+                'imagen': 'images/player1.png',
                 'descripcion': 'Un valiente explorador con sed de aventuras. Su agilidad y determinacion lo hacen perfecto para cualquier desafio.',
                 'velocidad': 3,
                 'salto': 4,
@@ -52,7 +52,7 @@ def inicio(request):
             {
                 'id': 'ninja',
                 'nombre': 'Kira la Ninja',
-                'imagen': 'images/player2.gif',
+                'imagen': 'images/player2.png',
                 'descripcion': 'Una guerrera sigilosa entrenada en las artes ninja. Su velocidad es incomparable y puede deslizarse bajo obstaculos.',
                 'velocidad': 5,
                 'salto': 3,
@@ -62,7 +62,7 @@ def inicio(request):
             {
                 'id': 'robot',
                 'nombre': 'R0-B0 el Robot',
-                'imagen': 'images/player3.gif',
+                'imagen': 'images/player3.png',
                 'descripcion': 'Un robot amigable con tecnologia avanzada. Su resistencia superior le permite absorber golpes y seguir adelante.',
                 'velocidad': 2,
                 'salto': 3,
@@ -106,7 +106,7 @@ def inicio(request):
             {
                 'id': 'slime',
                 'nombre': 'Slime Venenoso',
-                'imagen': 'images/drone1.gif',
+                'imagen': 'images/Drone1_hover.gif',
                 'descripcion': 'Una criatura gelatinosa que deja rastros de veneno. Facil de vencer pero aparece en grandes cantidades.',
                 'vida': 2,
                 'dano': 1,
@@ -116,7 +116,7 @@ def inicio(request):
             {
                 'id': 'esqueleto',
                 'nombre': 'Esqueleto Guardian',
-                'imagen': 'images/drone2.gif',
+                'imagen': 'images/Drone2_hover.gif',
                 'descripcion': 'Un guerrero no-muerto que protege tesoros antiguos. Ataca con precision y es dificil de esquivar.',
                 'vida': 4,
                 'dano': 3,
@@ -126,7 +126,7 @@ def inicio(request):
             {
                 'id': 'dragon',
                 'nombre': 'Dragon de Sombra',
-                'imagen': 'images/drone3.gif',
+                'imagen': 'images/Drone3_hover.gif',
                 'descripcion': 'El jefe final de cada mundo. Un dragon colosal que escupe fuego oscuro y tiene ataques devastadores.',
                 'vida': 5,
                 'dano': 5,
